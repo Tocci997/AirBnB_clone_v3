@@ -1,26 +1,37 @@
 #!/usr/bin/python3
-"""Create an endpoint that retrieves the number of each objects by type"""
-from flask import jsonify
+"""
+Flask route that returns json status response
+"""
 from api.v1.views import app_views
+from flask import jsonify, request
 from models import storage
 
 
-@app_views.route('/status')
-def api_status():
-    """route thst returns a JSON status"""
-    response = {'status': "OK"}
-    return jsonify(response)
+@app_views.route('/status', methods=['GET'])
+def status():
+    """
+    function for status route that returns the status
+    """
+    if request.method == 'GET':
+        resp = {"status": "OK"}
+        return jsonify(resp)
 
 
-@app_views.route('/stats')
-def get_stats():
-    """ retrieves the number of each objects by type"""
-    stats = {
-            'amenities': storage.count('Amenities'),
-            'cities': storage.count('Cities'),
-            'places': storage.count('Place'),
-            'reviews': storage.count('Review'),
-            'states': storage.count('State'),
-            'user': storage.count('User'),
-    }
-    return jsonify(stats)
+@app_views.route('/stats', methods=['GET'])
+def stats():
+    """
+    function to return the count of all class objects
+    """
+    if request.method == 'GET':
+        response = {}
+        stats = {
+            "Amenity": "amenities",
+            "City": "cities",
+            "Place": "places",
+            "Review": "reviews",
+            "State": "states",
+            "User": "users"
+        }
+        for key, value in stats.items():
+            response[value] = storage.count(key)
+        return jsonify(response)
