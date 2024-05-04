@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""Create flask app
-"""
+"""Create an endpoint that retrieves the number of each objects by type"""
 from flask import jsonify
 from api.v1.views import app_views
 from models import storage

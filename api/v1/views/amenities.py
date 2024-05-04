@@ -56,7 +56,7 @@ def create_an_amenity():
     return jsonify(amenity.to_dict()), 201
 
 
-@app_views.route('/amenities/<amenity.id>', methods=['PUT'],
+@app_views.route('/amenities/<amenity_id>', methods=['PUT'],
                  strict_slashes=False)
 def update_an_amenity(amenity_id):
     """Updates an Amenity object"""

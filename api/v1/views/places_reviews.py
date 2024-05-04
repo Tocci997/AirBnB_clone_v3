@@ -10,7 +10,7 @@ from models import storage
 from api.v1.views import app_views
 
 
-@app_views.route('/places/<place_id>/reviews', methods=['GET']
+@app_views.route('/places/<place_id>/reviews', methods=['GET'],
                  strict_slashes=False)
 def get_review_by_place(place_id):
     """Retrieves the list of all Review objects of a Place"""
@@ -21,7 +21,7 @@ def get_review_by_place(place_id):
     return jsonify(reviews)
 
 
-@app_views.route('/reviews/<review_id>', methods=['GET']
+@app_views.route('/reviews/<review_id>', methods=['GET'],
                  strict_slashes=False)
 def get_a_review(review_id):
     """Retrieves a Review object"""
