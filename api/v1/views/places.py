@@ -10,7 +10,8 @@ from models import storage
 from api.v1.views import app_views
 
 
-@app_views.route('/cities/<city_id>/places', methods=['GET'] strict_slashes=False)  # noqa
+@app_views.route('/cities/<city_id>/places', methods=['GET'], 
+                 strict_slashes=False)
 def get_places_by_city(city_id):
     """Retrieves the list of all Place objects of a City"""
     city = storage.get(City, city_id)
@@ -20,7 +21,7 @@ def get_places_by_city(city_id):
     return jsonify(places)
 
 
-@app_views.route('/places/<place_id>', methods=['GET']
+@app_views.route('/places/<place_id>', methods=['GET'],
                  strict_slashes=False)
 def get_a_place(place_id):
     """Retrieves a Place object"""
